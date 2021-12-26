@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.jnu.myaccount.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.jnu.myaccount.ui.gallery.GalleryFragment"
+        android:label="@string/menu_history"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_analysis"
+        android:name="com.jnu.myaccount.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_analysis"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_classification"
+        android:name="com.jnu.myaccount.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_classification"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_person"
+        android:name="com.jnu.myaccount.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_person"
+        tools:layout="@layout/fragment_slideshow" />
+</navigation>
