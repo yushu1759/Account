@@ -12,4 +12,21 @@
     <string name="menu_analysis">分析统计</string>
     <string name="menu_classification">分类管理</string>
     <string name="menu_person">账户管理</string>
+    <string name="hello">Hello blank fragment</string>
+
+    <string name="foods">吃喝饮食</string>
+    <string name="debt">欠债借款</string>
+    <string name="supplies">日常用品</string>
+    <string name="shopping">逛街购物</string>
+    <string name="sports">运动健身</string>
+    <string name="call_credit">通讯费用</string>
+    <string name="traffic">交通出行</string>
+    <string name="party">聚会聚餐</string>
+    <string name="housing">房租水电</string>
+    <string name="medical">医疗费用</string>
+    <string name="gift">人情礼物</string>
+    <string name="others">其他</string>
+    <string name="salary">工资薪水</string>
+    <string name="red_packet">社交红包</string>
+    <string name="fund">基金理财</string>
 </resources>

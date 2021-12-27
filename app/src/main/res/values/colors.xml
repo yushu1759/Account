@@ -4,8 +4,26 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="teal_700">#AC899F</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#DFCFD9</color>
+    <color name="button">#AC899F</color>
+
+    <color name="foods">#DDD8AD</color>
+    <color name="debt">#EFE591</color>
+    <color name="supplies">#CCDDAD</color>
+    <color name="shopping">#BAD39E</color>
+    <color name="sports">#9ACED5</color>
+    <color name="call_credit">#749CBC</color>
+    <color name="traffic">#6D986E</color>
+    <color name="party">#E3B6C5</color>
+    <color name="housing">#B58380</color>
+    <color name="medical">#ECC0B2</color>
+    <color name="gift">#DAB886</color>
+    <color name="others">#91C3BE</color>
+
+    <color name="salary">#9C8BBC</color>
+    <color name="red_packet">#BA95FB</color>
+    <color name="fund">#B3A9C5</color>
 </resources>

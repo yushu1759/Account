@@ -23,14 +23,14 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

@@ -36,11 +36,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        StatusBarUtils.setBarDarkMode(this,true);
+        StatusBarUtils.setBarDarkMode(this, true);
 
+        bindView();
+        initToolBar();
+    }
+
+    private void initToolBar(){
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        toolbar.setTitle("纯记账");
+    }
 
+    private void bindView(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         homeFragment = new HomeFragment();
