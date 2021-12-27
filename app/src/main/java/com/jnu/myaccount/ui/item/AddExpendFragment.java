@@ -26,7 +26,7 @@ import com.jnu.myaccount.utils.KeyBoardUtils;
 
 public class AddExpendFragment extends Fragment implements View.OnClickListener{
     public int selectItem;
-    private int num;
+    private double num;
     public String selectDate;
     private LinearLayout linearLayout;
     private ImageButton button_foods,button_drinks,button_supplies,button_shopping,button_sports,
@@ -80,7 +80,7 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
                 }
                 else {
                     DataUtils dataUtils = new DataUtils(getActivity());
-                    dataUtils.InsertData(selectItem, Integer.parseInt(accountEdit.getText().toString()), selectDate);
+                    dataUtils.InsertData(selectItem, Double.parseDouble(accountEdit.getText().toString()), selectDate);
                     getActivity().finish();
                 }
             }

@@ -150,7 +150,14 @@ public class HomeFragment extends Fragment {
                 AccountItem accountItem = (AccountItem) adpList.get(position);
                 viewHolder.icon.setBackgroundResource(accountItem.getIcon(accountItem.getRecord()));
                 viewHolder.record.setText(accountItem.getTitle(HomeFragment.this.getContext(),accountItem.getRecord()));
-                viewHolder.num.setText(accountItem.getNum() + "");
+                if(accountItem.getType()==0) {
+                    viewHolder.num.setText(String.format("%.2f",accountItem.getNum()));
+                    viewHolder.num.setTextColor(getResources().getColor(R.color.expend));
+                }
+                else{
+                    viewHolder.num.setText(String.format("%.2f",accountItem.getNum()));
+                    viewHolder.num.setTextColor(getResources().getColor(R.color.income));
+                }
             }
         }
 

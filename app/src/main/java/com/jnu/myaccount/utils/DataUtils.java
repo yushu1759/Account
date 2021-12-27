@@ -34,7 +34,7 @@ public class DataUtils {
         Cursor cursor = sqLiteDatabase.query("item", new String[]{"record", "num", "date", "type"}, null, null, null, null, null);
         while (cursor.moveToNext()) {
             int record = cursor.getInt(cursor.getColumnIndexOrThrow("record"));
-            int num = cursor.getInt(cursor.getColumnIndexOrThrow("num"));
+            double num = cursor.getDouble(cursor.getColumnIndexOrThrow("num"));
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
             int type = cursor.getInt(cursor.getColumnIndexOrThrow("type"));
             try {
@@ -45,7 +45,7 @@ public class DataUtils {
         }
     }
 
-    public void InsertData(int record,int num,String date){
+    public void InsertData(int record,double num,String date){
         SQLiteOpenHelper sqLiteOpenHelper = new DatabaceHelper(context,databaceName,null,databaceVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 

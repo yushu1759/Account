@@ -15,8 +15,8 @@ public class DatabaceHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table item(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, record int, num int, date text, type int)";
-        db.execSQL(sql);
+        String sql1 = "create table item(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, record int, num double, date text, type int)";
+        db.execSQL(sql1);
 
     }
 

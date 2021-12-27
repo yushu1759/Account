@@ -26,4 +26,7 @@
     <color name="salary">#9C8BBC</color>
     <color name="red_packet">#BA95FB</color>
     <color name="fund">#B3A9C5</color>
+
+    <color name="expend">#673AB7</color>
+    <color name="income">#553C83</color>
 </resources>

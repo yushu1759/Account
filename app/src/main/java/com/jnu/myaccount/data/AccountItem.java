@@ -11,15 +11,24 @@ import java.util.Date;
 public class AccountItem extends HomeItem {
     private int icon;
     private int record;
-    private int num;
+    private double num;
     private int type; //0为支出 1为收入
     private Calendar date;
 
-    public AccountItem(int record,int num,Calendar calendar){
+    public AccountItem(int record, double num, int year,int month,int date) {
         this.icon = getIcon(record);
         this.record = record;
         this.num = num;
-        this.type = getType(record);
+        this.type = getType();
+        this.date = Calendar.getInstance();
+        this.date.set(year, month, date);
+    }
+
+    public AccountItem(int record,double num,Calendar calendar){
+        this.icon = getIcon(record);
+        this.record = record;
+        this.num = num;
+        this.type = getType();
         this.date = calendar;
     }
 
@@ -93,8 +102,8 @@ public class AccountItem extends HomeItem {
         }
     }
 
-    public int getType(int record){
-        if(record<=10) return 0;
+    public int getType(){
+        if(this.record<=10) return 0;
         else return 1;
     }
 
@@ -102,11 +111,11 @@ public class AccountItem extends HomeItem {
         this.icon = icon;
     }
 
-    public int getNum() {
+    public double getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(double num) {
         this.num = num;
     }
     public int getRecord(){
