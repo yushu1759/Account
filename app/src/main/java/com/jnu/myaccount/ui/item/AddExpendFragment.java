@@ -25,7 +25,7 @@ import com.jnu.myaccount.utils.DataUtils;
 import com.jnu.myaccount.utils.KeyBoardUtils;
 
 public class AddExpendFragment extends Fragment implements View.OnClickListener{
-    public int selectItem;
+    public int selectItem=0;
     private double num;
     public String selectDate;
     private LinearLayout linearLayout;
@@ -41,7 +41,7 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
     int[] IntSelectDate = new int[5];
 
     private void initSelectDate(){
-        selectDate = new CalendarUtils().IntToTimeString(nowDate[0],nowDate[1]+1,nowDate[2]);
+        selectDate = new CalendarUtils().IntToTimeString(nowDate[0],nowDate[1],nowDate[2]);
         IntSelectDate = new CalendarUtils().TimeStringToInt(selectDate,IntSelectDate);
         button_time.setText(IntSelectDate[1]+"月"+IntSelectDate[2]+"日");
     }
@@ -72,16 +72,29 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
         keyBoardUtils.showKeyboard();
         initSelectDate();
 
+        if(operationTAG == OPERATION_EDIT){
+            selectDate = previousSelectTime;
+            selectItem = previousSelectItem;
+            accountEdit.setText(previousNum+"");
+        }
+
         keyBoardUtils.setOnEnsureListener(new KeyBoardUtils.OnEnsureListener(){
             @Override
             public void onEnsure() {
                 if(accountEdit.getText().toString().isEmpty()){
                     Toast.makeText(getContext(), "请输入金额！", Toast.LENGTH_SHORT).show();
                 }
+                else if(selectItem == 0){
+                    Toast.makeText(getContext(),"请选择类型！",Toast.LENGTH_SHORT).show();
+                }
                 else {
                     DataUtils dataUtils = new DataUtils(getActivity());
-                    dataUtils.InsertData(selectItem, Double.parseDouble(accountEdit.getText().toString()), selectDate);
-                    getActivity().finish();
+                    if(operationTAG == OPERATION_ADD) {
+                        dataUtils.InsertData(selectItem, Double.parseDouble(accountEdit.getText().toString()), selectDate);
+                    }
+                    else if(operationTAG == OPERATION_EDIT){
+                        dataUtils.EditData(selectItem,Double.parseDouble(accountEdit.getText().toString()),selectDate,createTime);
+                    }
                 }
             }
         });

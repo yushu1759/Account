@@ -6,7 +6,6 @@ import com.jnu.myaccount.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class AccountItem extends HomeItem {
     private int icon;
@@ -14,22 +13,19 @@ public class AccountItem extends HomeItem {
     private double num;
     private int type; //0为支出 1为收入
     private Calendar date;
+    private String createTime;
 
-    public AccountItem(int record, double num, int year,int month,int date) {
-        this.icon = getIcon(record);
-        this.record = record;
-        this.num = num;
-        this.type = getType();
-        this.date = Calendar.getInstance();
-        this.date.set(year, month, date);
-    }
-
-    public AccountItem(int record,double num,Calendar calendar){
+    public AccountItem(int record,double num,Calendar calendar, String createTime){
         this.icon = getIcon(record);
         this.record = record;
         this.num = num;
         this.type = getType();
         this.date = calendar;
+        this.createTime = createTime;
+    }
+
+    public String getTitle(Context context){
+        return getTitle(context,this.record);
     }
 
     public String getTitle(Context context, int record){
@@ -136,5 +132,12 @@ public class AccountItem extends HomeItem {
 
     public Calendar getDate(){
         return this.date;
+    }
+    public String getCreateTime(){
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }

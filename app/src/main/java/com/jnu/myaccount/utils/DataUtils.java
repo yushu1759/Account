@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.jnu.myaccount.data.AccountItem;
 import com.jnu.myaccount.data.HomeItem;
-import com.jnu.myaccount.databace.DatabaceHelper;
+import com.jnu.myaccount.database.DatabaseHelper;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -17,52 +17,86 @@ import java.util.TreeMap;
 
 public class DataUtils {
     private Context context;
-    private String databaceName;
-    private Integer databaceVersion;
+    private String databaseName;
+    private Integer databaseVersion;
 
     public DataUtils(Context context){
         this.context = context;
-        this.databaceName = "Account";
-        databaceVersion= 1;
+        this.databaseName = "Account";
+        databaseVersion = 1;
     }
 
-    public void loadData(TreeMap<String, List<HomeItem>> listTreeMap) {
+    public void loadData(TreeMap<String,List<HomeItem>> listTreeMap){
         listTreeMap.clear();
-        SQLiteOpenHelper sqLiteOpenHelper = new DatabaceHelper(context, databaceName, null, databaceVersion);
+        SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null,databaseVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getReadableDatabase();
-
-        Cursor cursor = sqLiteDatabase.query("item", new String[]{"record", "num", "date", "type"}, null, null, null, null, null);
-        while (cursor.moveToNext()) {
+        Cursor cursor = sqLiteDatabase.query("item",new String[]{"createTime","record","num","type","date","year","month","day"}, null,null,null,null,null);
+        while(cursor.moveToNext()){
             int record = cursor.getInt(cursor.getColumnIndexOrThrow("record"));
             double num = cursor.getDouble(cursor.getColumnIndexOrThrow("num"));
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
-            int type = cursor.getInt(cursor.getColumnIndexOrThrow("type"));
+            String createTime = cursor.getString(cursor.getColumnIndexOrThrow("createTime"));
             try {
-                AccountItem accountItem = new AccountItem(record, num, new CalendarUtils().StringToCalender(date));
+                AccountItem accountItem = new AccountItem(record,num,new CalendarUtils().StringToCalender(date),createTime);
                 updateData(listTreeMap, accountItem);
             } catch (ParseException e) {
             }
         }
     }
-
     public void InsertData(int record,double num,String date){
-        SQLiteOpenHelper sqLiteOpenHelper = new DatabaceHelper(context,databaceName,null,databaceVersion);
+        SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null, databaseVersion);
+        SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
+
+        int type = 0;
+        if ( record <= 10 ) type = 0;
+        else type = 1;
+        int[] tmpTime = new int[5];
+        new CalendarUtils().TimeStringToInt(date, tmpTime);
+
+        ContentValues values = new ContentValues();
+        values.put("createTime",new CalendarUtils().getNowTimeString());
+        values.put("record", record);
+        values.put("num",num);
+        values.put("type",type);
+        values.put("date",date);
+        values.put("year",tmpTime[0]);
+        values.put("month",tmpTime[1]);
+        values.put("day",tmpTime[2]);
+        sqLiteDatabase.insert("item",null,values);
+    }
+
+    public void EditData(int record, double num, String date, String createTime){
+        SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null, databaseVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         int type = 0;
         if ( record <= 10 ) type = 0;
         else type = 1;
 
+        int[] tmpTime = new int[5];
+        new CalendarUtils().TimeStringToInt(date, tmpTime);
+
         ContentValues values = new ContentValues();
         values.put("record", record);
         values.put("num",num);
-        values.put("date",date);
         values.put("type",type);
-        sqLiteDatabase.insert("item",null,values);
+        values.put("date",date);
+        values.put("year",tmpTime[0]);
+        values.put("month",tmpTime[1]);
+        values.put("day",tmpTime[2]);
+
+        sqLiteDatabase.update("item", values, "createTime=?", new String[]{createTime});
+    }
+
+    public void DeleteItem(String createTime){
+        SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null, databaseVersion);
+        SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
+
+        sqLiteDatabase.delete("item","createTime=?",new String[]{createTime});
     }
 
     public void DeleteTable(String table){
-        SQLiteOpenHelper sqLiteOpenHelper = new DatabaceHelper(context,databaceName,null,databaceVersion);
+        SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null, databaseVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
         String sql = "delete from "+table;
         sqLiteDatabase.execSQL(sql);

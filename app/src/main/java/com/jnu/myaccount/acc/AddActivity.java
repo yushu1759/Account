@@ -1,7 +1,9 @@
 package com.jnu.myaccount.acc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,15 +39,28 @@ public class AddActivity extends AppCompatActivity {
     public final static int fund = foods+13;
     public final static int others = foods+14;
 
+    public final static int OPERATION_EDIT = 500;
+    public final static int OPERATION_ADD = 600;
+
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
     private String[] tabTitle;
     private List<Fragment> fragments = new ArrayList<>();
 
+    public static int operationTAG = OPERATION_ADD;
+    public static String previousSelectTime;
+    public static double previousNum;
+    public static int previousSelectItem;
+    public static String createTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.background));
 
         StatusBarUtils.setBarDarkMode(this, true);
 
@@ -61,6 +76,13 @@ public class AddActivity extends AppCompatActivity {
         });
 
         initTabLayout();
+
+        Intent intent = getIntent();
+        operationTAG = intent.getIntExtra("operation",OPERATION_ADD);
+        previousNum = intent.getDoubleExtra("previousNum",0);
+        previousSelectTime = intent.getStringExtra("previousSelectTime");
+        previousSelectItem = intent.getIntExtra("previousSelectItem",14);
+        createTime = intent.getStringExtra("createTime");
     }
 
     private void initTabLayout() {

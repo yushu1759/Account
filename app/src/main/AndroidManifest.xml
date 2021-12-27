@@ -9,13 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAccount.NoActionBar">
+
         <activity
-            android:name=".acc.EditActivity"
-            android:exported="false" />
+            android:name=".acc.ShowActivity"
+            android:exported="false"
+            android:label="@string/title_activity_show"
+            android:theme="@style/Theme.MyAccount.NoActionBar.NoActionBar" />
+
         <activity
-            android:name=".acc.AddActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+        android:name=".acc.AddActivity"
+        android:parentActivityName=".MainActivity"
+        android:exported="false" />
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

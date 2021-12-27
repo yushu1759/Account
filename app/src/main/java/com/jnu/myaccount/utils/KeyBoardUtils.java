@@ -10,8 +10,6 @@ import android.widget.EditText;
 import com.jnu.myaccount.R;
 
 public class KeyBoardUtils {
-    public final static int KEYCODE_ADD = -99;
-    public final static int KEYCODE_MINUS = -100;
     private final Keyboard keyboard;
     private KeyboardView keyboardView;
     private EditText editText;
@@ -66,10 +64,6 @@ public class KeyBoardUtils {
                     break;
                 case Keyboard.KEYCODE_DONE:
                     onEnsureListener.onEnsure();
-                    break;
-                case KEYCODE_ADD:
-                    break;
-                case KEYCODE_MINUS:
                     break;
                 default:
                     editable.insert(start,Character.toString((char)primaryCode));

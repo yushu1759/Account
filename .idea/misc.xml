@@ -5,12 +5,14 @@
       <map>
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_add.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_edit.xml" value="0.1" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_show.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_add_expend.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_add_income.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/layout_account.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/nav_header_main.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/menu/longclick.xml" value="0.11296296296296296" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/menu/main.xml" value="0.1" />
       </map>
     </option>

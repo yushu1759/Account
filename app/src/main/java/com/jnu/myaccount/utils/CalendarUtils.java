@@ -14,6 +14,19 @@ public class CalendarUtils {
         return calendar;
     }
 
+    public String getNowDateString(){
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+
+
+    public String getNowTimeString(){
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss-SSS");
+        return format.format(date);
+    }
+
     public String IntToTimeString(int year, int month, int dayOfMonth){
         String date,strYear,strMonth,strDay;
         strYear = Integer.toString(year);
@@ -33,7 +46,7 @@ public class CalendarUtils {
         int[] date = new int[5];
         Calendar calendar = Calendar.getInstance();
         date[0] = calendar.get(Calendar.YEAR);
-        date[1] = calendar.get(Calendar.MONTH);
+        date[1] = calendar.get(Calendar.MONTH)+1;
         date[2] = calendar.get(Calendar.DAY_OF_MONTH);
         return date;
     }

@@ -1,9 +1,15 @@
 package com.jnu.myaccount.ui.home;
 
+import static com.jnu.myaccount.acc.AddActivity.OPERATION_ADD;
+import static com.jnu.myaccount.acc.AddActivity.OPERATION_EDIT;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jnu.myaccount.R;
 import com.jnu.myaccount.acc.AddActivity;
+import com.jnu.myaccount.acc.ShowActivity;
 import com.jnu.myaccount.data.AccountItem;
 import com.jnu.myaccount.data.HomeItem;
 import com.jnu.myaccount.utils.DataUtils;
@@ -33,7 +40,7 @@ import java.util.TreeMap;
 public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private static final int RESULT_CODE_ADD_OK = 200;
-    HomeItemAdapter adapter;
+    HomeAdapter adapter;
 
     TreeMap<String,List<HomeItem>> listTreeMap;
     List<HomeItem> homeItemList;
@@ -61,7 +68,7 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_item);
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomeFragment.this.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new HomeItemAdapter(homeItemList);
+        adapter = new HomeAdapter(homeItemList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -71,6 +78,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AddActivity.class);
+                intent.putExtra("operation", OPERATION_ADD);
                 startActivity(intent);
             }
         });
@@ -88,23 +96,26 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void arrangeData(TreeMap<String, List<HomeItem>> treeMap){
-        homeItemList.clear();
+    private void arrangeData(TreeMap<String, List<HomeItem>> treeMap) {
         DataUtils dataUtils = new DataUtils(this.getActivity());
         dataUtils.loadData(listTreeMap);
-        Iterator<Map.Entry<String,List<HomeItem>>> it = treeMap.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<String,List<HomeItem>> entry = it.next();
+        homeItemList.clear();
+        Iterator<Map.Entry<String, List<HomeItem>>> it = treeMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, List<HomeItem>> entry = it.next();
             List<HomeItem> homeItems = entry.getValue();
 
-            Calendar calendar = ((AccountItem)homeItems.get(0)).getDate();
+            Calendar calendar = ((AccountItem) homeItems.get(0)).getDate();
 
-            for(int i = 0 ;i < homeItems.size();i++){
+            for (int i = 0; i < homeItems.size(); i++) {
                 homeItemList.add(homeItems.get(i));
             }
         }
 
-        for(int i = 0;i < homeItemList.size();i++){
+        for (int i = 0; i < homeItemList.size(); i++) {
+            if (homeItemList.get(i) instanceof AccountItem) {
+                AccountItem accountItem = (AccountItem) homeItemList.get(i);
+            }
         }
     }
 
@@ -112,12 +123,16 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
     }
-    public class HomeItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        private static final int VIEW_TYPE_ACCOUNT_ITEM = 1;
+
+    public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+        private static final int VIEW_TYPE_ACCOUNT_ITEM = 100;
+        private static final int MENU_DELETE = 1;
+        private static final int MENU_DETAIL = 2;
+        private static final int MENU_EDIT = 3;
 
         private final List<HomeItem> adpList;
 
-        public HomeItemAdapter(List<HomeItem> adpList) {
+        public HomeAdapter(List<HomeItem> adpList) {
             this.adpList = adpList;
 
         }
@@ -166,7 +181,7 @@ public class HomeFragment extends Fragment {
             return adpList.size();
         }
 
-        class AccountItemHolder extends RecyclerView.ViewHolder {
+        class AccountItemHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
             ImageView icon;
             TextView record;
             TextView num;
@@ -176,8 +191,47 @@ public class HomeFragment extends Fragment {
                 icon = itemView.findViewById(R.id.image_view_account_icon);
                 record = itemView.findViewById(R.id.text_view_account_record);
                 num = itemView.findViewById(R.id.text_view_account_num);
+
+                itemView.setOnCreateContextMenuListener(this);
             }
 
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+                MenuItem menuDelete = menu.add(Menu.NONE, MENU_DELETE, 1, "删除");
+                MenuItem menuDetail = menu.add(Menu.NONE, MENU_DETAIL, 2, "详情");
+                MenuItem menuEdit = menu.add(Menu.NONE, MENU_EDIT, 3, "修改");
+
+                menuDelete.setOnMenuItemClickListener(this::onMenuItemClick);
+                menuDetail.setOnMenuItemClickListener(this::onMenuItemClick);
+                menuEdit.setOnMenuItemClickListener(this::onMenuItemClick);
+            }
+
+            public boolean onMenuItemClick(MenuItem menuItem){
+                int position = getAdapterPosition();
+                Intent intent;
+                AccountItem accountItem = (AccountItem) adpList.get(position);
+                switch (menuItem.getItemId()) {
+                    case MENU_DELETE:
+                        DataUtils dataUtils = new DataUtils(getActivity());
+                        dataUtils.DeleteItem(accountItem.getCreateTime());
+                        onResume();
+                        break;
+                    case MENU_DETAIL:
+                        intent = new Intent(getActivity(), ShowActivity.class);
+                        startActivity(intent);
+                        break;
+                    case MENU_EDIT:
+                        intent = new Intent(getActivity(),AddActivity.class);
+                        intent.putExtra("operation", OPERATION_EDIT);
+                        intent.putExtra("previousNum", accountItem.getNum());
+                        intent.putExtra("previousSelectTime", accountItem.getTagDate());
+                        intent.putExtra("previousSelectItem", accountItem.getRecord());
+                        intent.putExtra("createTime",accountItem.getCreateTime());
+                        startActivity(intent);
+                        break;
+                }
+                return false;
+            }
 
         }
     }
