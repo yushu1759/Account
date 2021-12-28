@@ -14,14 +14,16 @@ public class AccountItem extends HomeItem {
     private int type; //0为支出 1为收入
     private Calendar date;
     private String createTime;
+    private String remark;
 
-    public AccountItem(int record,double num,Calendar calendar, String createTime){
+    public AccountItem(int record,double num,Calendar calendar, String createTime,String remark){
         this.icon = getIcon(record);
         this.record = record;
         this.num = num;
         this.type = getType();
         this.date = calendar;
         this.createTime = createTime;
+        this.remark = remark;
     }
 
     public String getTitle(Context context){
@@ -146,5 +148,13 @@ public class AccountItem extends HomeItem {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

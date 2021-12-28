@@ -2,13 +2,19 @@ package com.jnu.myaccount.ui.item;
 
 import static com.jnu.myaccount.acc.AddActivity.*;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -31,7 +37,8 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
     private LinearLayout linearLayout;
     private ImageButton button_foods,button_drinks,button_supplies,button_shopping,button_sports,
             button_call_credit,button_traffic,button_party, button_housing,button_medical,button_gift,button_others;
-    private Button button_time, button_remark;
+    private Button button_time;
+    private EditText edittextRemark;
     private TextView addRecord;
 
     private EditText numEdit;
@@ -62,6 +69,7 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,6 +79,10 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
         KeyBoardUtils keyBoardUtils = new KeyBoardUtils(keyboardView, numEdit);
         keyBoardUtils.showKeyboard();
         initSelectDate();
+
+        linearLayout.setBackgroundColor(getResources().getColor(R.color.foods));
+        addRecord.setText(getResources().getString(R.string.foods));
+        selectItem = foods;
 
         if(operationTAG == OPERATION_EDIT){
             selectDate = previousSelectTime;
@@ -90,19 +102,13 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
                 else {
                     DataUtils dataUtils = new DataUtils(getActivity());
                     if(operationTAG == OPERATION_ADD) {
-                        dataUtils.InsertData(selectItem, Double.parseDouble(numEdit.getText().toString()), selectDate);
+                        dataUtils.InsertData(selectItem, Double.parseDouble(numEdit.getText().toString()), selectDate,edittextRemark.getText().toString());
                     }
                     else if(operationTAG == OPERATION_EDIT){
-                        dataUtils.EditData(selectItem,Double.parseDouble(numEdit.getText().toString()),selectDate,createTime);
+                        dataUtils.EditData(selectItem,Double.parseDouble(numEdit.getText().toString()),selectDate,createTime,edittextRemark.getText().toString());
                     }
                     getActivity().finish();
                 }
-            }
-        });
-
-        button_remark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
             }
         });
 
@@ -120,6 +126,46 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
                         },IntSelectDate[0],IntSelectDate[1]-1,IntSelectDate[2]).show();
             }
         });
+
+        edittextRemark.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent acc) {
+                if (acc.getAction() == MotionEvent.ACTION_DOWN){
+                    keyBoardUtils.hideKeyboard();
+                    return false;
+                }
+                return false;
+            }
+        });
+
+        edittextRemark.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView view, int actionId, KeyEvent event){
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                    edittextRemark.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getActivity()
+                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        numEdit.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    InputMethodManager imm = (InputMethodManager) getActivity()
+                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), 0);
+                    keyBoardUtils.showKeyboard();
+                    return false;
+                }
+                return false;
+            }
+        });
+
         return rootView;
     }
 
@@ -129,7 +175,7 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
         numEdit = rootView.findViewById(R.id.edit_text_add_expend_num);
         button_time = rootView.findViewById(R.id.button_time);
         keyboardView =rootView.findViewById(R.id.keyBoard);
-        button_remark = rootView.findViewById(R.id.button_remark);
+        edittextRemark = rootView.findViewById(R.id.edit_text_remark);
 
         button_foods = rootView.findViewById(R.id.button_add_expend_foods);
         button_drinks = rootView.findViewById(R.id.button_add_expend_debt);

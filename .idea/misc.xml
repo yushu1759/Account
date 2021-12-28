@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22037037037037038" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22037037037037038" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_menu_camera.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_three.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/side_nav_bar.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_add.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_edit.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_main.xml" value="0.1" />

@@ -30,14 +30,15 @@ public class DataUtils {
         listTreeMap.clear();
         SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null,databaseVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.query("item",new String[]{"createTime","record","num","type","date","year","month","day"}, null,null,null,null,null);
+        Cursor cursor = sqLiteDatabase.query("item",new String[]{"createTime","record","num","type","date","year","month","day","remark"}, null,null,null,null,null);
         while(cursor.moveToNext()){
             int record = cursor.getInt(cursor.getColumnIndexOrThrow("record"));
             double num = cursor.getDouble(cursor.getColumnIndexOrThrow("num"));
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
             String createTime = cursor.getString(cursor.getColumnIndexOrThrow("createTime"));
+            String remark = cursor.getString(cursor.getColumnIndexOrThrow("remark"));
             try {
-                AccountItem accountItem = new AccountItem(record,num,new CalendarUtils().StringToCalender(date),createTime);
+                AccountItem accountItem = new AccountItem(record,num,new CalendarUtils().StringToCalender(date),createTime,remark);
                 updateData(listTreeMap, accountItem);
             } catch (ParseException e) {
             }
@@ -57,13 +58,14 @@ public class DataUtils {
         }
     }
 
-    public void InsertData(int record,double num,String date){
+    public void InsertData(int record,double num,String date,String remark){
         SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null, databaseVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
         int type = 0;
         if ( record <= 10 ) type = 0;
         else type = 1;
+
         int[] tmpTime = new int[5];
         new CalendarUtils().TimeStringToInt(date, tmpTime);
 
@@ -76,10 +78,11 @@ public class DataUtils {
         values.put("year",tmpTime[0]);
         values.put("month",tmpTime[1]);
         values.put("day",tmpTime[2]);
+        values.put("remark",remark);
         sqLiteDatabase.insert("item",null,values);
     }
 
-    public void EditData(int record, double num, String date, String createTime){
+    public void EditData(int record, double num, String date, String createTime,String remark){
         SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null, databaseVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
 
@@ -98,6 +101,7 @@ public class DataUtils {
         values.put("year",tmpTime[0]);
         values.put("month",tmpTime[1]);
         values.put("day",tmpTime[2]);
+        values.put("remark",remark);
 
         sqLiteDatabase.update("item", values, "createTime=?", new String[]{createTime});
     }

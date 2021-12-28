@@ -47,7 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initToolBar(){
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_menu_slideshow);
         toolbar.setTitle("纯记账");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
     }
 
     private void bindView(){

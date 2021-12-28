@@ -3,6 +3,8 @@ package com.jnu.myaccount.ui.home;
 import static com.jnu.myaccount.acc.AddActivity.OPERATION_ADD;
 import static com.jnu.myaccount.acc.AddActivity.OPERATION_EDIT;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -107,6 +109,15 @@ public class HomeFragment extends Fragment {
 
             Calendar calendar = ((AccountItem) homeItems.get(0)).getDate();
 
+            for (int i = 0; i < homeItems.size(); i++) {
+                homeItemList.add(homeItems.get(i));
+            }
+        }
+
+        for (int i = 0; i < homeItemList.size(); i++) {
+            if (homeItemList.get(i) instanceof AccountItem) {
+                AccountItem accountItem = (AccountItem) homeItemList.get(i);
+            }
         }
     }
 
@@ -120,11 +131,16 @@ public class HomeFragment extends Fragment {
         private static final int MENU_DELETE = 1;
         private static final int MENU_DETAIL = 2;
         private static final int MENU_EDIT = 3;
-
         private final List<HomeItem> adpList;
+        private Context context;
+
 
         public HomeAdapter(List<HomeItem> adpList) {
             this.adpList = adpList;
+            this.context = context;
+        }
+
+        public void updateDataWhenDeleteItem() {
 
         }
 
@@ -223,6 +239,7 @@ public class HomeFragment extends Fragment {
                         intent.putExtra("previousSelectTime", accountItem.getTagDate());
                         intent.putExtra("previousSelectItem", accountItem.getRecord());
                         intent.putExtra("createTime",accountItem.getCreateTime());
+                        intent.putExtra("remark",accountItem.getRemark());
                         startActivity(intent);
                         break;
                 }

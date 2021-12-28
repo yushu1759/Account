@@ -41,6 +41,7 @@ public class ShowActivity extends AppCompatActivity {
         textviewType=findViewById(R.id.type);
         textviewDate=findViewById(R.id.date);
         textviewCreateTime=findViewById(R.id.createTime);
+        textviewRemark = findViewById(R.id.text_view_remark);
 
         Intent intent=getIntent();
         textviewNum.setText(intent.getDoubleExtra("num",0.00)+"");
@@ -48,5 +49,9 @@ public class ShowActivity extends AppCompatActivity {
         textviewType.setText(intent.getStringExtra("type"));
         textviewDate.setText(intent.getStringExtra("date"));
         textviewCreateTime.setText(intent.getStringExtra("createTime").substring(0,19));
+        if(intent.getStringExtra("remark")==null){
+            textviewRemark.setText("暂无备注");
+        }
+        else textviewRemark.setText("备注\n\n\t\t\t\t"+ intent.getStringExtra("remark"));
     }
 }
