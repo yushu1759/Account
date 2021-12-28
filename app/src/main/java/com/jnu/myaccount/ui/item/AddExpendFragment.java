@@ -129,8 +129,8 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
 
         edittextRemark.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent acc) {
-                if (acc.getAction() == MotionEvent.ACTION_DOWN){
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
                     keyBoardUtils.hideKeyboard();
                     return false;
                 }
