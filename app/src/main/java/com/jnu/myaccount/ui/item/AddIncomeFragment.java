@@ -94,6 +94,7 @@ public class AddIncomeFragment extends Fragment implements View.OnClickListener{
                     else if(operationTAG == OPERATION_EDIT){
                         dataUtils.EditData(selectItem,Double.parseDouble(numEdit.getText().toString()),selectDate,createTime);
                     }
+                    getActivity().finish();
                 }
             }
         });

@@ -34,7 +34,7 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
     private Button button_time, button_remark;
     private TextView addRecord;
 
-    private EditText accountEdit;
+    private EditText numEdit;
     private KeyboardView keyboardView;
 
     int[] nowDate = new CalendarUtils().getNowDate();
@@ -68,20 +68,20 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
         View rootView = inflater.inflate(R.layout.fragment_add_expend,container,false);
 
         initView(rootView);
-        KeyBoardUtils keyBoardUtils = new KeyBoardUtils(keyboardView,accountEdit);
+        KeyBoardUtils keyBoardUtils = new KeyBoardUtils(keyboardView, numEdit);
         keyBoardUtils.showKeyboard();
         initSelectDate();
 
         if(operationTAG == OPERATION_EDIT){
             selectDate = previousSelectTime;
             selectItem = previousSelectItem;
-            accountEdit.setText(previousNum+"");
+            numEdit.setText(previousNum+"");
         }
 
         keyBoardUtils.setOnEnsureListener(new KeyBoardUtils.OnEnsureListener(){
             @Override
             public void onEnsure() {
-                if(accountEdit.getText().toString().isEmpty()){
+                if(numEdit.getText().toString().isEmpty()){
                     Toast.makeText(getContext(), "请输入金额！", Toast.LENGTH_SHORT).show();
                 }
                 else if(selectItem == 0){
@@ -90,11 +90,12 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
                 else {
                     DataUtils dataUtils = new DataUtils(getActivity());
                     if(operationTAG == OPERATION_ADD) {
-                        dataUtils.InsertData(selectItem, Double.parseDouble(accountEdit.getText().toString()), selectDate);
+                        dataUtils.InsertData(selectItem, Double.parseDouble(numEdit.getText().toString()), selectDate);
                     }
                     else if(operationTAG == OPERATION_EDIT){
-                        dataUtils.EditData(selectItem,Double.parseDouble(accountEdit.getText().toString()),selectDate,createTime);
+                        dataUtils.EditData(selectItem,Double.parseDouble(numEdit.getText().toString()),selectDate,createTime);
                     }
+                    getActivity().finish();
                 }
             }
         });
@@ -125,13 +126,10 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
     private void initView(View rootView){
         linearLayout = rootView.findViewById(R.id.linear_layout_add_expend);
         addRecord = rootView.findViewById(R.id.text_view_add_expend_record);
-        accountEdit = rootView.findViewById(R.id.edit_text_add_expend_num);
+        numEdit = rootView.findViewById(R.id.edit_text_add_expend_num);
         button_time = rootView.findViewById(R.id.button_time);
         keyboardView =rootView.findViewById(R.id.keyBoard);
         button_remark = rootView.findViewById(R.id.button_remark);
-
-        linearLayout = rootView.findViewById(R.id.linear_layout_add_income);
-        addRecord = rootView.findViewById(R.id.text_view_add_expend_record);
 
         button_foods = rootView.findViewById(R.id.button_add_expend_foods);
         button_drinks = rootView.findViewById(R.id.button_add_expend_debt);

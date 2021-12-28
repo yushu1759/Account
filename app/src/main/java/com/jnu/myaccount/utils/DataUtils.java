@@ -43,6 +43,20 @@ public class DataUtils {
             }
         }
     }
+
+    private void updateData(TreeMap<String,List<HomeItem>> listTreeMap, AccountItem accountItem){
+        List<HomeItem> homeItemList;
+        if(listTreeMap.containsKey(accountItem.getTagDate())){
+            homeItemList = listTreeMap.get(accountItem.getTagDate());
+            homeItemList.add(accountItem);
+        }
+        else{
+            homeItemList = new ArrayList<>();
+            homeItemList.add(accountItem);
+            listTreeMap.put(accountItem.getTagDate(),homeItemList);
+        }
+    }
+
     public void InsertData(int record,double num,String date){
         SQLiteOpenHelper sqLiteOpenHelper = new DatabaseHelper(context, databaseName,null, databaseVersion);
         SQLiteDatabase sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
@@ -104,16 +118,4 @@ public class DataUtils {
         sqLiteDatabase.execSQL(sql);
     }
 
-    private void updateData(TreeMap<String,List<HomeItem>> listTreeMap, AccountItem accountItem){
-        List<HomeItem> homeItemList;
-        if(listTreeMap.containsKey(accountItem.getTagDate())){
-            homeItemList = listTreeMap.get(accountItem.getTagDate());
-            homeItemList.add(accountItem);
-        }
-        else{
-            homeItemList = new ArrayList<>();
-            homeItemList.add(accountItem);
-            listTreeMap.put(accountItem.getTagDate(),homeItemList);
-        }
-    }
 }

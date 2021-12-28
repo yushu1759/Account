@@ -61,6 +61,7 @@ public class KeyBoardUtils {
                     }
                     break;
                 case Keyboard.KEYCODE_CANCEL:
+                    editText.setText("");
                     break;
                 case Keyboard.KEYCODE_DONE:
                     onEnsureListener.onEnsure();

@@ -107,15 +107,6 @@ public class HomeFragment extends Fragment {
 
             Calendar calendar = ((AccountItem) homeItems.get(0)).getDate();
 
-            for (int i = 0; i < homeItems.size(); i++) {
-                homeItemList.add(homeItems.get(i));
-            }
-        }
-
-        for (int i = 0; i < homeItemList.size(); i++) {
-            if (homeItemList.get(i) instanceof AccountItem) {
-                AccountItem accountItem = (AccountItem) homeItemList.get(i);
-            }
         }
     }
 
@@ -218,6 +209,11 @@ public class HomeFragment extends Fragment {
                         break;
                     case MENU_DETAIL:
                         intent = new Intent(getActivity(), ShowActivity.class);
+                        intent.putExtra("num",accountItem.getNum());
+                        intent.putExtra("record",accountItem.getTitle(getContext()));
+                        intent.putExtra("type",accountItem.getPrintType());
+                        intent.putExtra("date",accountItem.getTagDate());
+                        intent.putExtra("createTime", accountItem.getCreateTime());
                         startActivity(intent);
                         break;
                     case MENU_EDIT:
