@@ -79,7 +79,7 @@ public class AddIncomeFragment extends Fragment implements View.OnClickListener{
         keyBoardUtils.showKeyboard();
         initSelectDate();
 
-        linearLayout.setBackgroundColor(getResources().getColor(R.color.salary));
+        linearLayout.setBackgroundColor(getResources().getColor(R.color.purple1));
         addRecord.setText(getResources().getString(R.string.salary));
         selectItem = salary;
 
@@ -190,22 +190,18 @@ public class AddIncomeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.button_add_income_salary:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.salary));
                 addRecord.setText(getResources().getString(R.string.salary));
                 selectItem = salary;
                 break;
             case R.id.button_add_income_red_packet:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.red_packet));
                 addRecord.setText(getResources().getString(R.string.red_packet));
                 selectItem = red_packet;
                 break;
             case R.id.button_add_income_fund:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.fund));
                 addRecord.setText(getResources().getString(R.string.fund));
                 selectItem = fund;
                 break;
             case R.id.button_add_income_others:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.others));
                 addRecord.setText(getResources().getString(R.string.others));
                 selectItem = others;
                 break;

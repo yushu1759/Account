@@ -80,7 +80,7 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
         keyBoardUtils.showKeyboard();
         initSelectDate();
 
-        linearLayout.setBackgroundColor(getResources().getColor(R.color.foods));
+        linearLayout.setBackgroundColor(getResources().getColor(R.color.purple1));
         addRecord.setText(getResources().getString(R.string.foods));
         selectItem = foods;
 
@@ -129,8 +129,8 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
 
         edittextRemark.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN){
+            public boolean onTouch(View view, MotionEvent acc) {
+                if (acc.getAction() == MotionEvent.ACTION_DOWN){
                     keyBoardUtils.hideKeyboard();
                     return false;
                 }
@@ -208,62 +208,50 @@ public class AddExpendFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_add_expend_foods:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.foods));
                 addRecord.setText(getResources().getString(R.string.foods));
                 selectItem = foods;
                 break;
             case R.id.button_add_expend_debt:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.debt));
                 addRecord.setText(getResources().getString(R.string.debt));
                 selectItem = debt;
                 break;
             case R.id.button_add_expend_supplies:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.supplies));
                 addRecord.setText(getResources().getString(R.string.supplies));
                 selectItem = supplies;
                 break;
             case R.id.button_add_expend_shopping:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.shopping));
                 addRecord.setText(getResources().getString(R.string.shopping));
                 selectItem = shopping;
                 break;
             case R.id.button_add_expend_sports:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.sports));
                 addRecord.setText(getResources().getString(R.string.sports));
                 selectItem = sports;
                 break;
             case R.id.button_add_expend_call_credit:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.call_credit));
                 addRecord.setText(getResources().getString(R.string.call_credit));
                 selectItem = call_credit;
                 break;
             case R.id.button_add_expend_traffic:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.traffic));
                 addRecord.setText(getResources().getString(R.string.traffic));
                 selectItem = traffic;
                 break;
             case R.id.button_add_expend_party:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.party));
                 addRecord.setText(getResources().getString(R.string.party));
                 selectItem = party;
                 break;
             case R.id.button_add_expend_housing:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.housing));
                 addRecord.setText(getResources().getString(R.string.housing));
                 selectItem = housing;
                 break;
             case R.id.button_add_expend_medical:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.medical));
                 addRecord.setText(getResources().getString(R.string.medical));
                 selectItem = medical;
                 break;
             case R.id.button_add_expend_gift:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.gift));
                 addRecord.setText(getResources().getString(R.string.gift));
                 selectItem = gift;
                 break;
             case R.id.button_add_expend_others:
-                linearLayout.setBackgroundColor(getResources().getColor(R.color.others));
                 addRecord.setText(getResources().getString(R.string.others));
                 selectItem = others;
                 break;

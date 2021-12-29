@@ -9,6 +9,7 @@
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/ic_three.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/round_corners_10dp_background.xml" value="0.19814814814814816" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/drawable/side_nav_bar.xml" value="0.30833333333333335" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_add.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_edit.xml" value="0.1" />
@@ -16,17 +17,19 @@
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/activity_show.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/content_main.xml" value="0.1" />
-        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_add_expend.xml" value="0.1" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_add_expend.xml" value="0.18055555555555555" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_add_income.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_gallery.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
-        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/layout_account.xml" value="0.1" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/layout_account.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/nav_header_main.xml" value="0.1" />
-        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/layout/toolbar.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/menu/activity_main_drawer.xml" value="0.30974358974358973" />
         <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/menu/longclick.xml" value="0.11296296296296296" />
-        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/menu/main.xml" value="0.1" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/menu/main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.32708333333333334" />
+        <entry key="..\:/Users/MH050/AndroidStudioProjects/MyAccount/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.32708333333333334" />
       </map>
     </option>
   </component>

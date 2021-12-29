@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyAccount.NoActionBar">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/round_corners_10dp_background"/>
+
 
         <activity
             android:name=".acc.ShowActivity"

@@ -3,7 +3,6 @@ package com.jnu.myaccount.ui.home;
 import static com.jnu.myaccount.acc.AddActivity.OPERATION_ADD;
 import static com.jnu.myaccount.acc.AddActivity.OPERATION_EDIT;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -174,11 +173,11 @@ public class HomeFragment extends Fragment {
                 viewHolder.record.setText(accountItem.getTitle(HomeFragment.this.getContext(),accountItem.getRecord()));
                 if(accountItem.getType()==0) {
                     viewHolder.num.setText(String.format("%.2f",accountItem.getNum()));
-                    viewHolder.num.setTextColor(getResources().getColor(R.color.expend));
+                    viewHolder.num.setTextColor(getResources().getColor(R.color.purple2));
                 }
                 else{
                     viewHolder.num.setText(String.format("%.2f",accountItem.getNum()));
-                    viewHolder.num.setTextColor(getResources().getColor(R.color.income));
+                    viewHolder.num.setTextColor(getResources().getColor(R.color.purple2));
                 }
             }
         }

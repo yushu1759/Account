@@ -88,6 +88,7 @@ public class AddActivity extends AppCompatActivity {
     private void initTabLayout() {
         tabLayout = findViewById(R.id.tl_tab);
         viewPager2 = findViewById(R.id.vp_content);
+        tabLayout.setBackgroundColor(getResources().getColor(R.color.purple2));
         tabTitle = new String[]{"收入", "支出"};
         AddIncomeFragment incomeFragment = new AddIncomeFragment();
         AddExpendFragment expendFragment = new AddExpendFragment();

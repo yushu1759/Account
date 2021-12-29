@@ -10,23 +10,6 @@
     <color name="background">#DFCFD9</color>
     <color name="button">#AC899F</color>
 
-    <color name="foods">#DDD8AD</color>
-    <color name="debt">#EFE591</color>
-    <color name="supplies">#CCDDAD</color>
-    <color name="shopping">#BAD39E</color>
-    <color name="sports">#9ACED5</color>
-    <color name="call_credit">#749CBC</color>
-    <color name="traffic">#6D986E</color>
-    <color name="party">#E3B6C5</color>
-    <color name="housing">#B58380</color>
-    <color name="medical">#ECC0B2</color>
-    <color name="gift">#DAB886</color>
-    <color name="others">#91C3BE</color>
-
-    <color name="salary">#9C8BBC</color>
-    <color name="red_packet">#BA95FB</color>
-    <color name="fund">#B3A9C5</color>
-
-    <color name="expend">#673AB7</color>
-    <color name="income">#553C83</color>
+    <color name="purple1">#97729E</color>
+    <color name="purple2">#634868</color>
 </resources>

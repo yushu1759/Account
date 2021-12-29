@@ -12,24 +12,24 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple2"
         android:elevation="4dp"
-        android:background="@color/background"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tl_tab"
             android:layout_gravity="center_horizontal"
             android:background="@color/background"
+            android:paddingHorizontal="5dp"
+            app:tabIndicatorColor="@color/button"
+            app:tabIndicatorFullWidth="false"
             app:tabMaxWidth="240dp"
             app:tabMinWidth="80dp"
             app:tabPaddingEnd="10dp"
             app:tabPaddingStart="10dp"
-            android:paddingHorizontal="5dp"
-            app:tabSelectedTextColor="@color/black"
-            app:tabIndicatorColor="@color/button"
-            app:tabIndicatorFullWidth="false"/>
+            app:tabSelectedTextColor="@color/black" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.viewpager2.widget.ViewPager2
